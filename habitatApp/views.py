@@ -8,8 +8,9 @@ from .models import Donor, Donation
 def index(request):
     """Default HttpResponse"""
     #return HttpResponse("Hello World!")
+    donors = Donor.objects.all()
     donations = Donation.objects.filter(date__lte=timezone.now()).order_by('date')
-    return render(request, 'habitatApp/index.html', {'donations': donations})
+    return render(request, 'habitatApp/index.html', {'donations': donations, 'donors': donors})
 
 '''
 def add_donation(request):
