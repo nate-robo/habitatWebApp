@@ -3,13 +3,10 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 import uuid
 
 ''' Donor DB model to create SQL table, one to many relationship with
     donations model '''
-
-@python_2_unicode_compatible
 
 
 class Donor(models.Model):
@@ -27,6 +24,10 @@ class Donor(models.Model):
     email = models.EmailField()
     reffered_by = models.CharField(max_length=254, blank=True)
     comments = models.TextField(blank=True)
+
+    def add_donor(self):
+        """Add donor to DB"""
+        self.save()
 
     def __str__(self):
         """Return title for DB label"""
@@ -46,14 +47,16 @@ class Donation(models.Model):
 
     id = models.UUIDField('Donation ID', primary_key=True, default=uuid.uuid4, editable=False)
     donor = models.ForeignKey(Donor, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)  # Suspect, working as intended?
+    date = models.DateField()  # Suspect, working as intended?
     type = models.CharField(max_length=254, blank=True)
     description = models.TextField(blank=True)
-    est_val = models.DecimalField(max_digits=19, decimal_places=2)
+    est_val = models.DecimalField('Estimated Value', max_digits=19, decimal_places=2)
+
+    def __str__(self):
+        """Return title for DB label"""
+        return "Donation " + str(self.id)
 
     def get_admin_url(self):
         """Return url for admin portal access"""
         info = (self._meta.app_label, self._meta.model_name)
         return reverse('admin:%s_%s_change' % info, args(self.pk,))
-
-    # Create your models here.
