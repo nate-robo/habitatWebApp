@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+
+{% for donation in donations %}
+    <div> 
+        <p>Donor: {{donation.donor}} </p>
+        <h1>Donation made: {{donation.date}} </h1>
+        <p>Description: {{donation.description}}</p>
+    </div>
+{% endfor %}
+
+{% for donor in donors %}
+    <p>Donor: {{donor.first_name}} {{donor.last_name}}</p>
+    <p>Donor Set: {{donor.donation_set.all}} </p>
+{% endfor %}
+</body>
+</html>
