@@ -2,15 +2,30 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils import timezone
+from django.shortcuts import redirect
 from .models import Donor, Donation
+from .forms import DonationForm
 
 
-def index(request):
+def donations(request):
     """Default HttpResponse"""
-    #return HttpResponse("Hello World!")
     donors = Donor.objects.all()
     donations = Donation.objects.filter(date__lte=timezone.now()).order_by('date')
     return render(request, 'habitatApp/index.html', {'donations': donations, 'donors': donors})
+
+
+def donation_new(request):
+    """Serve client html form for adding donation"""
+
+    if request.method == "POST":
+        form = DonationForm(request.POST)
+        if form.is_valid():
+            donation = form.save(commit=False)
+            form.save()
+            return redirect('donations')
+    else:
+        form = DonationForm()
+    return render(request, 'habitatApp/donation_edit.html', {'form': form})
 
 '''
 def add_donation(request):
