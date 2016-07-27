@@ -33,6 +33,16 @@ class Donor(models.Model):
         """Return title for DB label"""
         return "Donor " + str(self.id)
 
+    @property
+    def get_title(self):
+        """Return a title to be used for label in front end"""
+        if self.first_name is not '' or self.last_name is not '':
+            return self.first_name + ' 1 ' + self.last_name
+        elif self.company is not '':
+            return self.company
+        else:
+            return 'Donor ' + str(self.id)
+
     def get_admin_url(self):
         """Return url for admin portal access"""
         info = (self._meta.app_label, self._meta.model_name)

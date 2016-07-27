@@ -3,20 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 </head>
 <body>
 
-{% for donation in donations %}
-    <div> 
-        <p>Donor: {{donation.donor}} </p>
-        <h1>Donation made: {{donation.date}} </h1>
-        <p>Description: {{donation.description}}</p>
-    </div>
-{% endfor %}
+<nav class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</nav>
 
-{% for donor in donors %}
-    <p>Donor: {{donor.first_name}} {{donor.last_name}}</p>
-    <p>Donor Set: {{donor.donation_set.all}} </p>
-{% endfor %}
+    <div class="container">
+        <table class="table table-hover">  
+            <tr>
+                <th> Donor </th>
+                <th> Type </th>
+                <th> Description</th>
+                <th> Estimated Value</th>
+                <th> Date of Donation</th>
+            </tr>
+            {% for donation in donations %}
+                <tr>
+                    <td> {{donation.donor.get_title}} </td>
+                    <td> {{donation.type}} </td>
+                    <td> {{donation.description}} </td>
+                    <td> {{donation.est_val}}</td>
+                    <td> {{donation.date}} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</nav>
+        
 </body>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- jQuery (for Bootstrap JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
 </html>
