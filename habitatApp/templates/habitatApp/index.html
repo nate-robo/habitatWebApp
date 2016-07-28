@@ -36,7 +36,7 @@
                         <td> {{donation.description}} </td>
                         <td> {{donation.est_val}}</td>
                         <td> {{donation.date}} </td>
-                        <td> <a href="{% url 'donation_new' %}" class="btn btn-caution btn-xs pull-right" id="donation-btn"><b>+</b> Edit</a>    
+                        <td> <a href="{% url 'donation_detail' pk=donation.pk %}" class="btn btn-caution btn-xs pull-right" id="donation-btn"><b>+</b> Edit</a>    
 
                     </tr>
                 {% endfor %}

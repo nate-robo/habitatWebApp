@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
-import uuid
+from phonenumber_field.modelfields import PhoneNumberField
 
 ''' Donor DB model to create SQL table, one to many relationship with
     donations model '''
@@ -18,10 +18,10 @@ class Donor(models.Model):
     street_address = models.CharField(max_length=254)
     city = models.CharField(max_length=254)
     state = models.CharField(max_length=2)
-    zip_code = models.IntegerField()
-    home_phone = models.IntegerField(blank=True)
-    cell_phone = models.IntegerField(blank=True)
-    email = models.EmailField()
+    zip_code = models.IntegerField(null=True, blank=True)
+    home_phone = PhoneNumberField(blank=True, default='')
+    cell_phone = PhoneNumberField(blank=True, default='')
+    email = models.EmailField(blank=True)
     reffered_by = models.CharField(max_length=254, blank=True)
     comments = models.TextField(blank=True)
 
@@ -37,7 +37,7 @@ class Donor(models.Model):
     def get_title(self):
         """Return a title to be used for label in front end"""
         if self.first_name is not '' or self.last_name is not '':
-            return self.first_name + ' 1 ' + self.last_name
+            return self.first_name + ' ' + self.last_name
         elif self.company is not '':
             return self.company
         else:
@@ -54,13 +54,11 @@ class Donor(models.Model):
 
 class Donation(models.Model):
     """Donation database model"""
-
-    id = models.UUIDField('Donation ID', primary_key=True, default=uuid.uuid4, editable=False)
     donor = models.ForeignKey(Donor, on_delete=models.CASCADE)
     date = models.DateField()  # Suspect, working as intended?
     type = models.CharField(max_length=254, blank=True)
     description = models.TextField(blank=True)
-    est_val = models.DecimalField('Estimated Value', max_digits=19, decimal_places=2)
+    est_val = models.DecimalField('Estimated Value', max_digits=19, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         """Return title for DB label"""

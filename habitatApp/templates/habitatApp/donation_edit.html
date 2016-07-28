@@ -3,21 +3,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>New Donation</title>
+    <title>Edit Donation</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 </head>
 <body>
 
-
-    {% block content %}
-        <h3> New Donation </h3>
+    <div="container">
+        {% block content %}
+        <h3> Edit Donation </h3>
         <form method="POST" class="post-form">{%csrf_token %}
             {{form.as_p}}
             <button type="submit" class="save btn btn-default">Save</button>
         </form>
-    {% endblock %}
-
+        {% endblock %}
+    </div>
 </body>
 
 <!-- Bootstrap JavaScript -->
