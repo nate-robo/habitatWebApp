@@ -40,7 +40,7 @@ def donation_edit(request, pk):
             donation = form.save(commit=False)
             #Manual form work here
             form.save()
-            return redirect('donation_detail', pk=post.pk)
+            return redirect('donation_detail', pk=donation.pk)
     else:
         form = DonationForm(instance=donation)
     return render(request, 'habitatApp/donation_edit.html', {'form': form})

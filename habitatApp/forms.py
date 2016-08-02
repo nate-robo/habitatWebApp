@@ -9,4 +9,7 @@ class DonationForm(forms.ModelForm):
         """Form layout"""
 
         model = Donation
+        widgets = {
+        'data': forms.DateInput(attrs={'class': 'datepicker'}),
+        }
         fields = ('donor', 'date', 'type', 'description', 'est_val')
