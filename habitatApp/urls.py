@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^donation/new/$', views.donation_new, name='donation_new'),
     url(r'^donation/(?P<pk>\d+)/edit/$', views.donation_edit, name='donation_edit'),
     url(r'^donation/(?P<pk>\d+)/$', views.donation_detail, name='donation_detail'),
+    #url(r'^donors$', views.donors, name='donors')
 ]

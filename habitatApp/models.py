@@ -31,7 +31,7 @@ class Donor(models.Model):
 
     def __str__(self):
         """Return title for DB label"""
-        return "Donor " + str(self.id)
+        return self.get_title
 
     @property
     def get_title(self):

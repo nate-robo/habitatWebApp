@@ -45,6 +45,9 @@ def donation_edit(request, pk):
         form = DonationForm(instance=donation)
     return render(request, 'habitatApp/donation_edit.html', {'form': form})
 
+def donors(request):
+    donors= Donor.objects.filter()
+
 
 
 '''
