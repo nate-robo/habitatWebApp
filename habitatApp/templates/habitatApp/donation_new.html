@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>New Donation</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-            $( function() {
-                $( "#id_date" ).datepicker();
-             } );
-    </script>
-</head>
-<body>
-    <div class="container">
+{% extends 'habitatApp/base.html' %}
 
+{% load staticfiles%}
+
+
+    {% block content %}
+    <div class="col-sm-12">
+
+        <h3> New Donation </h3>
         <table class="table sm">
         <form method="POST" class="post-form">{%csrf_token %}
         {% for field in form %}
@@ -34,23 +26,9 @@
         </form>
         </table>
 
-        <!--
-        {{form.non_field_errors}}
-        <div class="fieldWrapper">
-            {{form.subject.errors}}
-            <label for="{{form.subject.id_for_label}}">Donor: </label>
-            <select id="id_donor" name="donor">
-            
-            {{form.subject}}
-        </div>
-        -->
-
     </div>
-</body>
 
-<!-- Bootstrap JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- jQuery (for Bootstrap JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-</html>
+    {% endblock %} 
+    
+
 

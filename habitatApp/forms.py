@@ -11,6 +11,3 @@ class DonationForm(forms.ModelForm):
 
         model = Donation
         fields = ('donor', 'date', 'type', 'description', 'est_val')
-        widgets = {
-        'date': forms.DateInput(attrs={'class': 'datepicker', 'required': 'true'}),
-        }

@@ -7,6 +7,9 @@ from .models import Donor, Donation
 from .forms import DonationForm
 
 
+def base(request):
+    return render(request, 'habitatApp/base.html')
+
 def donations(request):
     """Default HttpResponse"""
     donors = Donor.objects.all()
@@ -46,7 +49,7 @@ def donation_edit(request, pk):
     return render(request, 'habitatApp/donation_edit.html', {'form': form})
 
 def donors(request):
-    donors= Donor.objects.filter()
+    donors= Donor.objects.all().order_by('get_title')
 
 
 
