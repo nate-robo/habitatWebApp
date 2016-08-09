@@ -4,9 +4,14 @@
 
 
     {% block content %}
-    <div class="col-sm-12">
+    <div>
 
-        <h3> New Donation </h3>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'donations' %}">Donations</a></li>
+            <li class="active">New Donation</li>
+        </ol>
+
+        
         <table class="table sm">
         <form method="POST" class="post-form">{%csrf_token %}
         {% for field in form %}

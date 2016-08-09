@@ -5,9 +5,13 @@
 
     {% block content %}
     
-    <div="col-sm-12">
+    <div>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'donations' %}">Donations</a></li>
+            <li><a href="{% url 'donation_detail' pk=donation.pk %}">Donation Detail</a></li>
+            <li class='active'>Edit Donation</li>
+        </ol>
         
-        <h3> Edit Donation </h3>
         <table class="table sm">
         <form method="POST" class="post-form">{%csrf_token %}
         {% for field in form %}
