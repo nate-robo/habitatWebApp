@@ -7,11 +7,18 @@
     {{ block.super }}
 
 {% endblock %}
+
+
     {% block content %}
+
+
+     <ol class="breadcrumb">
+        <li class="active">Donors</li>
+    </ol>
 
     <table class="table table-hover" id="table">
         <input type="text" id="search" placeholder=" Search" />                
-        <a href="#" class="btn btn-primary btn-s pull-right" id="donor-btn"><b>+</b> Add Donor</a>    
+        <a href="{% url 'donor_new' %}" class="btn btn-primary btn-s pull-right" id="donor-btn"><b>+</b> Add Donor</a>    
         <thead class="thead-inverse">
             <tr>
                 <th> Name </th>
@@ -19,6 +26,8 @@
                 <th> Address</th>
                 <th> Phone #</th>
                 <th> E-mail</th>
+                <th> </th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
@@ -67,7 +76,9 @@
                     <td> </td>
                     {% endif %}
 
-                    <td> <a href="{% url 'donor_detail' pk=donor.pk %}" class="btn btn-caution btn-xs pull-right" id="donation-btn"><b>+</b> Edit</a> </td>   
+                    <td> <a href="{% url 'donor_detail' pk=donor.pk %}" class="btn btn-info btn-xs pull-right" id="donation-btn"><span class='glyphicon glyphicon-search'></span> Detail</a> </td>   
+
+                    <td><btn>
 
                 </tr>
             {% endfor %}

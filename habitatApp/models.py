@@ -22,7 +22,7 @@ class Donor(models.Model):
     home_phone = PhoneNumberField(blank=True, default='')
     cell_phone = PhoneNumberField(blank=True, default='')
     email = models.EmailField(blank=True)
-    reffered_by = models.CharField(max_length=254, blank=True)
+    referred_by = models.CharField(max_length=254, blank=True)
     comments = models.TextField(blank=True)
 
     def add_donor(self):

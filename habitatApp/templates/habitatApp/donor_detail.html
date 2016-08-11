@@ -14,8 +14,8 @@
                     <li class="active">Donor Detail</li>
                 </ol>
                 
-                <a href="#" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
-                <table class = "table table-sm">
+                <a href="{% url 'donor_edit' pk=donor.pk %}" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
+                <table class = "table table-hover table-sm">
                     <thead>
                         <tr>
                             <th>Donor Info: </th>

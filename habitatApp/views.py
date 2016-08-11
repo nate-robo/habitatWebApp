@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import redirect, get_object_or_404
 from .models import Donor, Donation
-from .forms import DonationForm
+from .forms import DonationForm, DonorForm
 
 
 def base(request):
@@ -58,6 +58,31 @@ def donor_detail(request, pk):
     donations = Donation.objects.all()
     my_donations = donations.filter(donor=donor)
     return render(request, 'habitatApp/donor_detail.html', {'donor': donor, 'my_donations': my_donations})
+
+def donor_new(request):
+    if request.method == "POST":
+        form = DonorForm(request.POST)
+        if form.is_valid():
+            donor = form.save(commit=False)
+            #Manual work (if needed)
+            form.save()
+            return redirect('donors')
+    else:
+        form = DonorForm()
+    return render(request, 'habitatApp/donor_new.html', {'form': form})
+
+def donor_edit(request, pk):
+    donor = get_object_or_404(Donor, pk=pk)
+    if request.method == "POST":
+        form=DonorForm(request.POST, instance=donor)
+        if form.is_valid():
+            donation = form.save(commit=False)
+            form.save()
+            return redirect('donor_detail', pk=donor.pk)
+    else:
+        form = DonorForm(instance=donor)
+    return render(request, 'habitatApp/donor_edit.html', {'form': form})
+
 
 
 

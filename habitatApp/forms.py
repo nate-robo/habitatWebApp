@@ -11,3 +11,10 @@ class DonationForm(forms.ModelForm):
 
         model = Donation
         fields = ('donor', 'date', 'type', 'description', 'est_val')
+
+
+class DonorForm(forms.ModelForm):
+
+    class Meta:
+        model = Donor
+        fields = ('company', 'first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code', 'home_phone', 'cell_phone', 'email', 'referred_by', 'comments')
