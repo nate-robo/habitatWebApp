@@ -49,8 +49,15 @@ def donation_edit(request, pk):
     return render(request, 'habitatApp/donation_edit.html', {'form': form})
 
 def donors(request):
-    donors= Donor.objects.all().order_by('get_title')
+    donors= Donor.objects.all()
+    donations = Donation.objects.filter(date__lte=timezone.now()).order_by('date')
+    return render(request, 'habitatApp/donors.html', {'donations': donations, 'donors': donors})
 
+def donor_detail(request, pk):
+    donor = get_object_or_404(Donor, pk=pk)
+    donations = Donation.objects.filter(date__lte=timezone.now()).order_by('date')
+    my_donations = donations.filter(donor=donor)
+    return render(request, 'habitatApp/donor_detail.html', {'donor': donor})
 
 
 '''

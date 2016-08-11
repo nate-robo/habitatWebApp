@@ -31,17 +31,15 @@ class Donor(models.Model):
 
     def __str__(self):
         """Return title for DB label"""
-        return self.get_title
-
-    @property
-    def get_title(self):
-        """Return a title to be used for label in front end"""
-        if self.first_name is not '' or self.last_name is not '':
-            return self.first_name + ' ' + self.last_name
-        elif self.company is not '':
-            return self.company
-        else:
-            return 'Donor ' + str(self.id)
+        try:
+            if self.first_name is not '' or self.last_name is not '':
+                return self.first_name + ' ' + self.last_name
+            elif self.company is not '':
+                return self.company
+            else:
+                return 'Donor ' + str(self.id)
+        except Exception: 
+            return null
 
     def get_admin_url(self):
         """Return url for admin portal access"""
