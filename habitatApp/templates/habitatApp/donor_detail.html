@@ -1,0 +1,57 @@
+{% extends 'habitatApp/base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/donor_detail.css' %}">
+{% endblock %}
+
+    {% block content %}
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'donors' %}">Donors</a></li>
+                    <li class="active">Donor Detail</li>
+                </ol>
+                
+                <a href="#" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
+                <table class = "table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Donor Info: </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><b>ID: </b></td> <td>{{donor.id}}</td> </tr>
+                        <tr><td><b>Donor: </b></td> <td>{{donor}} </td></tr>
+                        <tr><td><b>Company: </b></td> <td> {{donor.company}} </td></tr>
+                        <tr><td><b>Title: </b></td> <td> {{donor.title}} </td></tr>
+                        <tr><td><b>First Name: </b></td> <td> {{donor.first_name}} </td></tr>
+                        <tr><td><b>Last Name: </b></td> <td> {{donor.last_name}} </td></tr>
+                        <tr><td><b>Address: </b></td> <td>{{donor.address}}</td> </tr>
+                        <tr><td><b>City: </b></td> <td>{{donor.city}}</td> </tr>
+                        <tr><td><b>State: </b></td> <td>{{donor.state}}</td> </tr>
+                        <tr><td><b>Zip Code: </b></td> <td>{{donor.zip_code}}</td> </tr>
+                        <tr><td><b>Home Phone: </b></td> <td>{{donor.home_phone}}</td> </tr>
+                        <tr><td><b>Cell Phone: </b></td> <td>{{donor.cell_phone}}</td> </tr>
+                        <tr><td><b>E-mail: </b></td> <td>{{donor.email}}</td> </tr>
+                        <tr><td><b>Referred By: </b></td> <td>{{donor.referred_by}}</td> </tr>
+                        <tr><td><b>Comments: </b></td> <td>{{donor.comments}}</td> </tr>
+
+                    </tbody>
+                </table>
+                <div class="well">
+                <table class="table table-condensed" id="donations_tbl">
+                    {% for donation in my_donations%}
+                        <tr>
+                        <td>{{donation.date}}:</td> 
+                        <td>{{donation.type}}</td>
+                        <td>{{donation.description}}</td>
+                        <td>{{donation.est_val}}$</td>
+                        </tr>
+                    {% endfor %}
+                <table>
+                </div>
+            </div>
+    {% endblock %}
+

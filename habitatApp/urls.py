@@ -3,14 +3,17 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
+    #Donations and donation sub views
     url(r'^$', views.donations, name='donations'),
     url(r'^donation/new/$', views.donation_new, name='donation_new'),
     url(r'^donation/(?P<pk>\d+)/edit/$', views.donation_edit, name='donation_edit'),
     url(r'^donation/(?P<pk>\d+)/$', views.donation_detail, name='donation_detail'),
+    #Donors and Donor sub views
     url(r'^donors/$', views.donors, name='donors'),
     url(r'^donors/(?P<pk>\d+)/$', views.donor_detail, name='donor_detail'),
+    #url(r'^donors/(?P<pk>\d_)/edit/$', views.donor_edit, name='donor_edit'),
+    #base template for extending
     url(r'^base$', views.base, name='base'),
-    #url(r'^donors$', views.donors, name='donors')
 ]
 
 if settings.DEBUG:

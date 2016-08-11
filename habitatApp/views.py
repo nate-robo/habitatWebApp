@@ -55,9 +55,11 @@ def donors(request):
 
 def donor_detail(request, pk):
     donor = get_object_or_404(Donor, pk=pk)
-    donations = Donation.objects.filter(date__lte=timezone.now()).order_by('date')
+    donations = Donation.objects.all()
     my_donations = donations.filter(donor=donor)
-    return render(request, 'habitatApp/donor_detail.html', {'donor': donor})
+    return render(request, 'habitatApp/donor_detail.html', {'donor': donor, 'my_donations': my_donations})
+
+
 
 
 '''
