@@ -5,6 +5,8 @@
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/donor_detail.css' %}">
+<script src="{% static 'js/donors.js' %}"></script>
+
 {% endblock %}
 
     {% block content %}
@@ -51,6 +53,11 @@
                         </tr>
                     {% endfor %}
                 <table>
+                </div>
+                <div class='alert alert-success' role='alert'>
+                <script>
+                    alert('{{message}}');
+                </script>
                 </div>
             </div>
     {% endblock %}

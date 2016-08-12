@@ -16,7 +16,7 @@
         <li class="active">Donors</li>
     </ol>
 
-    <table class="table table-hover" id="table">
+    <table class="table table-hover table-condensed" id="table">
         <input type="text" id="search" placeholder=" Search" />                
         <a href="{% url 'donor_new' %}" class="btn btn-primary btn-s pull-right" id="donor-btn"><b>+</b> Add Donor</a>    
         <thead class="thead-inverse">
@@ -76,7 +76,9 @@
                     <td> </td>
                     {% endif %}
 
-                    <td> <a href="{% url 'donor_detail' pk=donor.pk %}" class="btn btn-info btn-xs pull-right" id="donation-btn"><span class='glyphicon glyphicon-search'></span> Detail</a> </td>   
+                    <td> <a href="{% url 'donor_detail' pk=donor.pk %}" class="btn btn-info btn-xs pull-right" id="donation-btn"><span class='glyphicon glyphicon-search'></span></a> </td>   
+
+                    <td> <a href="{% url 'donor_delete' pk=donor.pk %}" class="btn btn-danger btn-xs pull-left" id="donor-delete-btn"><span class='glyphicon glyphicon-remove'></span></a> </td>
 
                     <td><btn>
 

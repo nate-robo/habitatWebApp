@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.shortcuts import redirect, get_object_or_404
 from .models import Donor, Donation
 from .forms import DonationForm, DonorForm
+import json
+
 
 
 def base(request):
@@ -74,7 +76,7 @@ def donor_new(request):
 def donor_edit(request, pk):
     donor = get_object_or_404(Donor, pk=pk)
     if request.method == "POST":
-        form=DonorForm(request.POST, instance=donor)
+        form = DonorForm(request.POST, instance=donor)
         if form.is_valid():
             donation = form.save(commit=False)
             form.save()
@@ -83,6 +85,12 @@ def donor_edit(request, pk):
         form = DonorForm(instance=donor)
     return render(request, 'habitatApp/donor_edit.html', {'form': form})
 
+def donor_delete(request, pk):
+    donor = get_object_or_404(Donor, pk=pk)
+    #donor = Donor.objects.get(pk=int(request.GET['id']))
+    donor.delete()
+    payload = {'success': True}
+    return redirect('donors')
 
 
 
