@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils import timezone
+from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404
 from .models import Donor, Donation
 from .forms import DonationForm, DonorForm
@@ -50,6 +51,12 @@ def donation_edit(request, pk):
         form = DonationForm(instance=donation)
     return render(request, 'habitatApp/donation_edit.html', {'form': form})
 
+def donation_delete(request, pk):
+    donation = get_object_or_404(Donation, pk=pk)
+    donation.delete()
+    messages.success(request, 'Donation successfully deleted from database')
+    return redirect('donations')
+
 def donors(request):
     donors= Donor.objects.all()
     donations = Donation.objects.filter(date__lte=timezone.now()).order_by('date')
@@ -90,6 +97,7 @@ def donor_delete(request, pk):
     #donor = Donor.objects.get(pk=int(request.GET['id']))
     donor.delete()
     payload = {'success': True}
+    messages.success(request, 'Donor successfully deleted from database')
     return redirect('donors')
 
 

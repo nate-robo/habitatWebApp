@@ -15,7 +15,8 @@
                     <li><a href="{% url 'donors' %}">Donors</a></li>
                     <li class="active">Donor Detail</li>
                 </ol>
-                
+
+                    
                 <a href="{% url 'donor_edit' pk=donor.pk %}" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
                 <table class = "table table-hover table-sm">
                     <thead>
@@ -54,11 +55,8 @@
                     {% endfor %}
                 <table>
                 </div>
-                <div class='alert alert-success' role='alert'>
-                <script>
-                    alert('{{message}}');
-                </script>
-                </div>
+
+                
             </div>
     {% endblock %}
 

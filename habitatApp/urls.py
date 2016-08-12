@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^donation/new/$', views.donation_new, name='donation_new'),
     url(r'^donation/(?P<pk>\d+)/edit/$', views.donation_edit, name='donation_edit'),
     url(r'^donation/(?P<pk>\d+)/$', views.donation_detail, name='donation_detail'),
+    url(r'^donation/(?P<pk>\d+)/delete/$', views.donation_delete, name='donation_delete'),
     # Donors and Donor sub views
     url(r'^donors/$', views.donors, name='donors'),
     url(r'^donors/new/$', views.donor_new, name='donor_new'),

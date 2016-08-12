@@ -34,7 +34,6 @@
             {% for donor in donors %}
                 <tr>
 
-
                     
                     {% if donor.first_name and donor.last_name %}
                     <td> {{donor.first_name}} {{donor.last_name}} </td>
@@ -76,15 +75,23 @@
                     <td> </td>
                     {% endif %}
 
-                    <td> <a href="{% url 'donor_detail' pk=donor.pk %}" class="btn btn-info btn-xs pull-right" id="donation-btn"><span class='glyphicon glyphicon-search'></span></a> </td>   
+                    <td> <a href="{% url 'donor_detail' pk=donor.pk %}" class="btn btn-default btn-xs pull-right" id="donation-btn"><span class='glyphicon glyphicon-search'></span></a> </td>   
 
                     <td> <a href="{% url 'donor_delete' pk=donor.pk %}" class="btn btn-danger btn-xs pull-left" id="donor-delete-btn"><span class='glyphicon glyphicon-remove'></span></a> </td>
 
-                    <td><btn>
+
 
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+        {% for message in messages %}
+            <div class='alert alert-success alert-dismissable' role='alert'>
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
 
     {% endblock %}
