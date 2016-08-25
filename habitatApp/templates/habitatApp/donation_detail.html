@@ -5,10 +5,7 @@
 
     {% block content %}
             <div>
-                <ol class="breadcrumb">
-                    <li><a href="{% url 'donations' %}">Donations</a></li>
-                    <li class="active">Donation Detail</li>
-                </ol>
+                
                 
                 <a href="{% url 'donation_edit' pk=donation.pk %}" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
                 <table class = "table table-sm">

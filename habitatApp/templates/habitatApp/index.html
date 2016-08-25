@@ -20,37 +20,37 @@
 </div>
 <div class="row">
 
-  <div class="col-sm-2">
-    <div class="sidebar-nav">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="visible-xs navbar-brand">Sidebar menu</span>
+    <div class="col-sm-2">
+        <div class="sidebar-nav">
+          <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <span class="visible-xs navbar-brand"> </span>
+            </div>
+            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "donations" %}"><span class="glyphicon glyphicon-briefcase"></span> Donations</a></li>
+                <li><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user"></span> Donors</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
         </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url "donations" %}"><span class="glyphicon glyphicon-briefcase"></span> Donations</a></li>
-            <li><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user"></span> Donors</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </div>
-  </div>
+
+  
   <div class="col-sm-9">
 
-    <ol class="breadcrumb">
-        <li class="active">Donations</li>
-    </ol>
- 
-    <table class="table table-hover table-condensed" id="table">
-        <input type="text" id="search" placeholder=" Search" />                
-        <a href="{% url 'donation_new' %}" class="btn btn-primary btn-s pull-right" id="donation-btn"><b>+</b> Add Donation</a>    
-        <thead class="thead-inverse">
+    <input type="text" id="search" placeholder=" Search" />  
+    <a href="{% url 'donation_new' %}" class="btn btn-primary btn-s pull-right" id="donation-btn"><b>+</b> Add Donation</a>
+
+    <table class="table table-hover" id="table">
+            
+        <thead class="thead-inverse" id="tbl_head">
             <tr>
                 <th> Donor </th>
                 <th> Type </th>
@@ -61,7 +61,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tbl_body">
             {% for donation in donations %}
                 <tr>
                     <td> {{ donation.donor }}  </td>
@@ -71,7 +71,7 @@
                     <td> {{donation.date}} </td>
 
                     <td> <a href="{% url 'donation_detail' pk=donation.pk %}" class="btn btn-default btn-xs pull-right" id="donation-info-btn"><span class='glyphicon glyphicon-search'></span></a> </td>   
-                    <td> <a href="{% url 'donation_delete' pk=donation.pk %}" class="btn btn-danger btn-xs " id="donation-delete-btn"><span class='glyphicon glyphicon-remove'></span></a> </td>
+                    <td> <a href="{% url 'donation_delete' pk=donation.pk %}" class="btn btn-danger btn-xs pull-right" id="donation-delete-btn"><span class='glyphicon glyphicon-remove'></span></a> </td>
 
                 </tr>
             {% endfor %}

@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404
 from .models import Donor, Donation
 from .forms import DonationForm, DonorForm
-import json
 
 
 
@@ -29,6 +28,7 @@ def donation_new(request):
             donation = form.save(commit=False)
             #Manual form work here
             form.save()
+            messages.success(request, 'New Donation succesfully added to database')
             return redirect('donations')
     else:
         form = DonationForm()
@@ -46,6 +46,7 @@ def donation_edit(request, pk):
             donation = form.save(commit=False)
             #Manual form work here
             form.save()
+            messages.success(request, 'Donation succesfully edited and changes made to existing database entry')
             return redirect('donation_detail', pk=donation.pk)
     else:
         form = DonationForm(instance=donation)
@@ -75,6 +76,7 @@ def donor_new(request):
             donor = form.save(commit=False)
             #Manual work (if needed)
             form.save()
+            messages.success(request, 'New Donor succesfully added to database')
             return redirect('donors')
     else:
         form = DonorForm()
@@ -87,6 +89,7 @@ def donor_edit(request, pk):
         if form.is_valid():
             donation = form.save(commit=False)
             form.save()
+            messages.success(request, 'Donor succesfully edited and changes made to existing database entry')
             return redirect('donor_detail', pk=donor.pk)
     else:
         form = DonorForm(instance=donor)
