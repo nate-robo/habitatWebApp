@@ -1,25 +1,31 @@
-{% extends 'habitatApp/base.html' %}
+{% extends 'habitatApp/baseForm.html' %}
 
 {% load staticfiles%}
 
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/donation_new.css' %}">
+
+{% endblock %}
+
 
     {% block content %}
-    <div>
 
-        <ol class="breadcrumb">
-            <li><a href="{% url 'donations' %}">Donations</a></li>
-            <li class="active">New Donation</li>
-        </ol>
 
 
         <table class="table sm">
+        <section>
+            <h3> New Donation </h3>
+        </section>
+
         <form method="POST" class="post-form">{%csrf_token %}
+
         {% for field in form %}
             <div class="fieldWrapper">
                 <tr>
-                    {{ field.errors }}
                     <td>{{ field.label_tag }} </td>
                     <td>{{ field }} </td>
+                    <td>{{ field.erros}} </td>
 
                     {% if field.help_text %}
                     <p class="help">{{ field.help_text|safe }}</p>
@@ -27,11 +33,12 @@
                 </tr>
             </div>
         {% endfor %}
-            <tr><td><button type="submit" class="save btn btn-default">Save</button></td><td></td></tr>
+            <tr id="bottom-row"><td><button type="submit" class="save btn btn-success" id="save-btn">Save</button></td></tr>
         </form>
+
         </table>
 
-    </div>
+
 
     {% endblock %} 
     

@@ -5,6 +5,7 @@
 
     {% block content %}
             <div>
+
                 
                 
                 <a href="{% url 'donation_edit' pk=donation.pk %}" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
@@ -15,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><b>ID: </b></td> <td>{{donation.donor.id}}</td> </tr>
+                        <tr><td><b>ID: </b></td> <td>{{donation.id}}</td> </tr>
                         <tr><td><b>Donor: </b></td> <td>{{donation.donor}} </td></tr>
                         <tr><td><b>Date: </b></td> <td> {{donation.date}} </td></tr>
                         <tr><td><b>Type: </b></td> <td> {{donation.type}} </td></tr>

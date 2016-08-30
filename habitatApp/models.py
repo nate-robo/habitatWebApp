@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 ''' Donor DB model to create SQL table, one to many relationship with
     donations model '''
@@ -19,8 +18,8 @@ class Donor(models.Model):
     city = models.CharField(max_length=254)
     state = models.CharField(max_length=2)
     zip_code = models.IntegerField(null=True, blank=True)
-    home_phone = PhoneNumberField(blank=True, default='')
-    cell_phone = PhoneNumberField(blank=True, default='')
+    home_phone = models.CharField(max_length=12, blank=True)
+    cell_phone = models.CharField(max_length=12, blank=True)
     email = models.EmailField(blank=True)
     referred_by = models.CharField(max_length=254, blank=True)
     comments = models.TextField(blank=True)
@@ -41,7 +40,7 @@ class Donor(models.Model):
         except Exception: 
             return null
 
-    def get_admin_url(self):
+    def get_admin_url(self): 
         """Return url for admin portal access"""
         info = (self._meta.app_label, self._meta.model_name)
         return reverse('admin:%s_%s_change' % info, args(self.pk,))
@@ -53,10 +52,10 @@ class Donor(models.Model):
 class Donation(models.Model):
     """Donation database model"""
     donor = models.ForeignKey(Donor, on_delete=models.CASCADE)
-    date = models.DateField()  # Suspect, working as intended?
+    date = models.DateField()
     type = models.CharField(max_length=254, blank=True)
     description = models.TextField(blank=True)
-    est_val = models.DecimalField('Estimated Value', max_digits=19, decimal_places=2, null=True, blank=True)
+    est_val = models.DecimalField('Estimated Value', max_digits=10, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
         """Return title for DB label"""

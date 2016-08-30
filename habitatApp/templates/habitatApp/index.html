@@ -20,7 +20,7 @@
 </div>
 <div class="row">
 
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         <div class="sidebar-nav">
           <div class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
@@ -34,8 +34,8 @@
             </div>
             <div class="navbar-collapse collapse sidebar-navbar-collapse">
               <ul class="nav navbar-nav">
-                <li><a href="{% url "donations" %}"><span class="glyphicon glyphicon-briefcase"></span> Donations</a></li>
-                <li><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user"></span> Donors</a></li>
+                <li class="active"><a href="{% url "donations" %}"><span class="glyphicon glyphicon-gift" title="Go to donations table"></span> </a></li>
+                <li><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user" title="Go to donors table"></span></a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
@@ -43,9 +43,9 @@
     </div>
 
   
-  <div class="col-sm-9">
+  <div class="col-sm-10">
 
-    <input type="text" id="search" placeholder=" Search" />  
+    <input type="text" id="search" placeholder=" Search..." />  
     <a href="{% url 'donation_new' %}" class="btn btn-primary btn-s pull-right" id="donation-btn"><b>+</b> Add Donation</a>
 
     <table class="table table-hover" id="table">
