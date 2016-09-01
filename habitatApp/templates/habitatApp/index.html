@@ -34,8 +34,8 @@
             </div>
             <div class="navbar-collapse collapse sidebar-navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url "donations" %}"><span class="glyphicon glyphicon-gift" title="Go to donations table"></span> </a></li>
-                <li><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user" title="Go to donors table"></span></a></li>
+                <li id="on"><a href="{% url "donations" %}"><span class="glyphicon glyphicon-gift" title="Go to donations table"></span> </a></li>
+                <li><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user" title="Go to donors table"></span> </a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
@@ -77,7 +77,6 @@
             {% endfor %}
         </tbody>
     </table>
-
     {% for message in messages %}
         <div class='alert alert-success alert-dismissable' role='alert'>
             {{message}}
@@ -86,7 +85,6 @@
             </button>
         </div>
     {% endfor %}
-
 
     </div>
 </div>

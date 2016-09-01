@@ -14,17 +14,16 @@
 
         <table class="table sm">
         <section>
-            <h3> Edit Donation </h3>
+            <h3> New Donor </h3>
 
         </section>
         <form method="POST" class="post-form">{%csrf_token %}
         {% for field in form %}
             <div class="fieldWrapper">
                 <tr>
-                    {{ field.errors }}
-                    <td>{{ field.label_tag }} </td>
-                    <td>{{ field }} </td>
-
+                    <td>{{ field.label_tag }} {% if field.field.required %}<span class="asterik"> * </span>{% endif %} </td>
+                    <td>{{ field}} </td>
+                    <td id='errors'>{{field.errors}}</td>
                     {% if field.help_text %}
                     <p class="help">{{ field.help_text|safe }}</p>
                     {% endif %}

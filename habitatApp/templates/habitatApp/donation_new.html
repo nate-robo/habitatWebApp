@@ -5,6 +5,19 @@
 {% block head %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/donation_new.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/i18n/defaults-*.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready($('.selectpicker').selectpicker({
+      }));
+
+    $('.selectpicker').val('{{request.donor}}');
+    $('.selectpicker').selectpicker('render');
+
+
+    </script>
 
 {% endblock %}
 
@@ -12,8 +25,7 @@
     {% block content %}
 
 
-
-        <table class="table sm">
+        <table class="table">
         <section>
             <h3> New Donation </h3>
         </section>
@@ -23,9 +35,9 @@
         {% for field in form %}
             <div class="fieldWrapper">
                 <tr>
-                    <td>{{ field.label_tag }} </td>
+                    <td>{{ field.label_tag }} {% if field.field.required %} <span class="asterik">* <span>{% endif %}</td>
                     <td>{{ field }} </td>
-                    <td>{{ field.erros}} </td>
+                    <td id="errors">{{ field.errors}} </td>
 
                     {% if field.help_text %}
                     <p class="help">{{ field.help_text|safe }}</p>
@@ -33,7 +45,7 @@
                 </tr>
             </div>
         {% endfor %}
-            <tr id="bottom-row"><td><button type="submit" class="save btn btn-success" id="save-btn">Save</button></td></tr>
+            <tr><td><button type="submit" class="save btn btn-success" id="save-btn">Save</button></td></tr>
         </form>
 
         </table>
@@ -43,4 +55,5 @@
     {% endblock %} 
     
 
+</html>
 

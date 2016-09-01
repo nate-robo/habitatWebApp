@@ -15,19 +15,19 @@ class MySiteForm(forms.ModelForm):
 class DonationForm(MySiteForm):
     """Form for adding new donatin to DB"""
 
-    donor = forms.ModelMultipleChoiceField(queryset=Donor.objects.all())
-    date = forms.DateField(widget=SelectDateWidget())
+    donor = forms.ModelChoiceField(queryset=Donor.objects.all(), widget=forms.Select(attrs={'class': 'selectpicker', 'data-live-search':'true', 'data-width':'350px'}))
+    date = forms.DateField(widget=SelectDateWidget(attrs={'class':'selectpicker', 'data-width':'114px'}))
+
+     
     class Meta:
         """Form layout"""
-
         model = Donation
         fields = ('donor', 'date', 'type', 'est_val', 'description')
 
-
 class DonorForm(MySiteForm):
 
-    cell_phone = USPhoneNumberField()
-    home_phone = USPhoneNumberField()
+    cell_phone = USPhoneNumberField(required=False)
+    home_phone = USPhoneNumberField(required=False)
 
     class Meta:
         model = Donor

@@ -5,25 +5,16 @@
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/donor_detail.css' %}">
-<script src="{% static 'js/donors.js' %}"></script>
-
 {% endblock %}
 
     {% block content %}
-            <div>
-                <ol class="breadcrumb">
-                    <li><a href="{% url 'donors' %}">Donors</a></li>
-                    <li class="active">Donor Detail</li>
-                </ol>
+            
 
-                    
                 <a href="{% url 'donor_edit' pk=donor.pk %}" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
-                <table class = "table table-hover table-sm">
-                    <thead>
-                        <tr>
-                            <th>Donor Info: </th>
-                        </tr>
-                    </thead>
+                <table class="table table-hover">
+                <section>
+                    <h3> Donor Info </h3>
+                </section>     
                     <tbody>
                         <tr><td><b>ID: </b></td> <td>{{donor.id}}</td> </tr>
                         <tr><td><b>Donor: </b></td> <td>{{donor}} </td></tr>
@@ -43,7 +34,10 @@
 
                     </tbody>
                 </table>
-                <div class="well">
+                <section>
+                    <h4 style="text-align:center">{{donor}}'s Donations </h4>
+                </section>
+
                 <table class="table table-condensed" id="donations_tbl">
                     {% for donation in my_donations%}
                         <tr>
@@ -53,10 +47,10 @@
                         <td>{{donation.est_val}}$</td>
                         </tr>
                     {% endfor %}
-                <table>
-                </div>
+                </table>
 
-                
-            </div>
+
+                        
+            
     {% endblock %}
 

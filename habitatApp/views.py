@@ -30,6 +30,8 @@ def donation_new(request):
             form.save()
             messages.success(request, 'New Donation succesfully added to database')
             return redirect('donations')
+        else:
+            print form.errors
     else:
         form = DonationForm()
     return render(request, 'habitatApp/donation_new.html', {'form': form})
@@ -47,7 +49,7 @@ def donation_edit(request, pk):
             #Manual form work here
             form.save()
             messages.success(request, 'Donation succesfully edited and changes made to existing database entry')
-            return redirect('donation_detail', pk=donation.pk)
+            return redirect('donations')
     else:
         form = DonationForm(instance=donation)
     return render(request, 'habitatApp/donation_edit.html', {'form': form})
@@ -90,7 +92,7 @@ def donor_edit(request, pk):
             donation = form.save(commit=False)
             form.save()
             messages.success(request, 'Donor succesfully edited and changes made to existing database entry')
-            return redirect('donor_detail', pk=donor.pk)
+            return redirect('donors')
     else:
         form = DonorForm(instance=donor)
     return render(request, 'habitatApp/donor_edit.html', {'form': form})

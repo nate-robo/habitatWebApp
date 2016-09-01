@@ -2,19 +2,23 @@
 
 {% load staticfiles%}
 
+{% block head %}
+    {{block.super}}
+    <link rel="stylesheet" href="{% static 'css/donation_detail.css' %}">
+
+{% endblock %} 
+
 
     {% block content %}
             <div>
 
-                
+
                 
                 <a href="{% url 'donation_edit' pk=donation.pk %}" class="btn btn-primary btn-s pull-right" id="donation-btn">Edit</a> 
-                <table class = "table table-sm">
-                    <thead>
-                        <tr>
-                            <th>Donation Info: </th>
-                        </tr>
-                    </thead>
+                <table class = "table table-sm table-hover">
+                 <section>
+                    <h3> Donation Info </h3>
+                </section>   
                     <tbody>
                         <tr><td><b>ID: </b></td> <td>{{donation.id}}</td> </tr>
                         <tr><td><b>Donor: </b></td> <td>{{donation.donor}} </td></tr>
@@ -26,6 +30,8 @@
                     </tbody>
                 </table>
             </div>
+
+
 
     {% endblock %} 
 

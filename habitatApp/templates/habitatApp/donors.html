@@ -1,17 +1,25 @@
-{% extends 'habitatApp/base.html' %}
-
 {% load staticfiles %}
 
-
-{% block head %}
-    {{ block.super }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/donors.css' %}">
+    <script src="{% static 'js/donors.js' %}"></script>
+</head>
+<body>
+<div class ="row" id="header">
 
+<a href="{% url "donations" %}">
+<img src="{% static "imgs/habitatLogo_white.png" %}" id="logo" alt="Habitat Brand" style="height: 15%; width: 18%; object-fit: contain"/>
+</a>
 
-{% endblock %}
-
-
-    {% block navbar %}
+</div>
+    <div class="row">
 
     <div class="col-sm-1">
         <div class="sidebar-nav">
@@ -28,17 +36,14 @@
             <div class="navbar-collapse collapse sidebar-navbar-collapse">
               <ul class="nav navbar-nav">
                 <li><a href="{% url "donations" %}"><span class="glyphicon glyphicon-gift" title="Go to donations table"></span> </a></li>
-                <li class="active"><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user" title="Go to donors table"></span></a></li>
+                <li id='on'><a href="{% url "donors" %}"><span class="glyphicon glyphicon-user" title="Go to donors table"></span></a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
         </div>
     </div>
-    {% endblock %} 
 
-    {% block content %}
-
-
+    <div class="col-sm-10">
     <table class="table table-hover" id="table">
         <input type="text" id="search" placeholder=" Search..." />                
         <a href="{% url 'donor_new' %}" class="btn btn-primary btn-s pull-right" id="donor-btn"><b>+</b> Add Donor</a>    
@@ -108,13 +113,24 @@
             {% endfor %}
         </tbody>
     </table>
-        {% for message in messages %}
-            <div class='alert alert-success alert-dismissable' role='alert'>
-                {{message}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        {% endfor %}
+    {% for message in messages %}
+        <div class='alert alert-success alert-dismissable' role='alert'>
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    </div>
+</div>
 
-    {% endblock %}
+</body>
+
+<!--Site Custom JS -->
+<script src="{% static 'js/index.js' %}"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- jQuery (for Bootstrap JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</html>

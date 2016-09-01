@@ -1,21 +1,23 @@
-{% extends 'habitatApp/base.html' %}
+{% extends 'habitatApp/baseForm.html' %}
 
 {% load staticfiles%}
 
+{% block head %}
+    {{block.super}}
+    <link rel="stylesheet" href="{% static 'css/donor_new.css' %}">
+
+{% endblock %}
 
     {% block content %}
     
 
     <div>
-
-
-        <ol class="breadcrumb">
-            <li><a href="{% url 'donors' %}">Donor</a></li>
-            <li><a href="#">Donor Detail</a></li>
-            <li class='active'>Edit Donor</li>
-        </ol>
         
         <table class="table sm">
+
+        <section>
+            <h3>Edit Donor </h3>
+        </section>
         <form method="POST" class="post-form">{%csrf_token %}
         {% for field in form %}
             <div class="fieldWrapper">
@@ -30,7 +32,7 @@
                 </tr>
             </div>
         {% endfor %}
-            <tr><td><button type="submit" class="save btn btn-default">Save</button></td><td></td></tr>
+            <tr><td><button type="submit" class="save btn btn-success">Save</button></td><td></td></tr>
         </form>
         </table>
         
