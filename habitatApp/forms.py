@@ -18,7 +18,9 @@ class DonationForm(MySiteForm):
     donor = forms.ModelChoiceField(queryset=Donor.objects.all(), widget=forms.Select(attrs={'class': 'selectpicker', 'data-live-search':'true', 'data-width':'350px'}))
     date = forms.DateField(widget=SelectDateWidget(attrs={'class':'selectpicker', 'data-width':'114px'}))
 
-     
+    type = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': ' Computer'}))
+    est_val = forms.DecimalField(label='Estimated Value', required=False, widget=forms.TextInput(attrs={'placeholder':' 30.00'}))
+    description = forms.Textarea(attrs={'placeholder': 'Old Apple Computer, Working'})
     class Meta:
         """Form layout"""
         model = Donation
@@ -26,8 +28,17 @@ class DonationForm(MySiteForm):
 
 class DonorForm(MySiteForm):
 
-    cell_phone = USPhoneNumberField(required=False)
-    home_phone = USPhoneNumberField(required=False)
+    cell_phone = USPhoneNumberField(required=False, widget=forms.TextInput(attrs={'placeholder': ' 610-555-5555'}))
+    home_phone = USPhoneNumberField(required=False, widget=forms.TextInput(attrs={'placeholder': ' 610-555-5555'}))
+
+    company = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': ' Lowes'}))
+    first_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': ' John'}))
+    last_name = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': ' Doe'}))
+    street_address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' 123 Restore Lane'}))
+    city = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' Allentown'}))
+    state = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ' PA'}))
+    zip_code = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': ' 18015'})) 
+    email = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': ' donor@restore.com'}))
 
     class Meta:
         model = Donor
