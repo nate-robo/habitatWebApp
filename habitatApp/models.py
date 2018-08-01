@@ -38,7 +38,7 @@ class Donor(models.Model):
             else:
                 return 'Donor ' + str(self.id)
         except Exception: 
-            return null
+            return None
 
     def get_admin_url(self): 
         """Return url for admin portal access"""
